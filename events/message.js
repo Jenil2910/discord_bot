@@ -41,11 +41,12 @@ module.exports = (client, msg) => {
             user.send(`${global.active}`);
         }else if(msg.content.startsWith('<sleep ') && msg.author.name == 'Infinity291092'){
             global.active=false;
-            user.send(`Sleeping for ${msg.content.split(' ')[1]} seconds`);
-            setTimeout(() => {
-                user.send(`Active again`);
-                global.active=true;
-            }, parseInt(msg.content.split(' ')[1]));
+            user.send(`Sleeping for ${msg.content.split(' ')[1]} miliseconds`).then(x => {
+                setTimeout(() => {
+                    user.send(`Active again`);
+                    global.active=true;
+                }, parseInt(msg.content.split(' ')[1]));
+            });
         }
     }
 }
