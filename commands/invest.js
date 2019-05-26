@@ -8,18 +8,25 @@ module.exports = (link, lim) => {
 }
 
 function invest_(link, lim){
-    const r = new snoowrap({
+    const R = new snoowrap({
         userAgent: `${process.env.REDDIT_USERID}`,
         clientId: `${process.env.REDDIT_CLIENTID}`,
         clientSecret: `${process.env.REDDIT_CLIENTSECRET}`,
         refreshToken: `${process.env.REDDIT_REFRESHTOKEN}`
     });
-    pollFreq = 10000;
+    const r = new snoowrap({
+        userAgent: `${process.env.INFINITY_USERID}`,
+        clientId: `${process.env.INFINITY_CLIENTID}`,
+        clientSecret: `${process.env.INFINITY_CLIENTSECRET}`,
+        refreshToken: `${process.env.INFINITY_REFRESHTOKEN}`
+    });
+    pollFreq = 30000;
 	return new Promise((res, rej) => {
-        r.getSubmission(`bt52yc`).expandReplies({limit: 1, depth: 1})
+        //`bt52yc`
+        r.getSubmission(link).expandReplies({limit: 1, depth: 1})
         .then( replies => {
             console.log(`Sending, Try no. ${lim}.`);
-            return replies.comments[0].reply('Final');
+            return replies.comments[0].reply('!invest 100%');
         }).then( (com) => {
             console.log(`Reply sent. Comment id ${com.id}`);
             cIds.push(com.id);
@@ -27,12 +34,10 @@ function invest_(link, lim){
                 console.log(`Waiting, Try no. ${lim}.`);
                 setTimeout(() => {
                     resolve(commentHelpers.getReply(link, cIds, r));
-                    //resolve(commentHelpers.getReply(`bt52yc`, `eouh1zy`, r));
                 }, pollFreq);
             })
         }).then(msgs => {
             console.log(`Replies Recieved, Try no. ${lim}.`);
-            console.log(`${JSON.stringify(msgs)}`);
             repI = msgs.findIndex(msg => {
                 return msg.isreply;
             })

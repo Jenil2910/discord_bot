@@ -20,7 +20,9 @@ function gen_promise(pid, cid, r){
                 });
             }
             let repl = comm.replies.find( e => {
-                return e.author.name == 'Infinity291092';
+                //return e.author.name == 'Infinity291092';
+                console.log(`msg : ${e.body}, ${typeof e.body.match(/[0-9,]+ \*Memecoins\*/g)}`);
+                return e.author.name == 'MemeInvestor_bot' && (typeof e.body.match(/[0-9,]+ \*Memecoins\*/g) != 'undefined');
             });
             if(typeof repl === 'undefined'){
                 res({
