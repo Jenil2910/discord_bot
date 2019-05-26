@@ -32,7 +32,7 @@ module.exports = (client, msg) => {
             console.log(`Finished Processing`);
         }
     }else if(msg.channel.type === "dm"){
-        console.log('DM message');
+        console.log(`DM message ${msg.channel.recipient.name}`);
         let user = client.users.get(process.env.INFINITY_DISCORDID);
         if(msg.content.startsWith('<active ')){
             global.active=true;
