@@ -44,7 +44,7 @@ module.exports = (client, msg) => {
             setTimeout(() => {
                 user.send(`Active again`);
                 global.active=true;
-            });
+            }, parseInt(msg.content.split(' ')[1]));
         }
     }
 }
