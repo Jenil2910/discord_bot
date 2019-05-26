@@ -30,20 +30,21 @@ module.exports = (client, msg) => {
                 user.send(`\`\`\`Error while investing : ${e}\`\`\``);
             });
             console.log(`Finished Processing`);
-        }else if(msg.content.startsWith('<sleep ') && msg.author.username == 'Infinity291092'){
+        }
+    }else if(msg.channel.type === "dm" && msg.channel.recipient.name == 'Infinity291092'){
+        console.log('DM message');
+        if(msg.content.startsWith('<active ')){
+            global.active=true;
+            user.send(`Active again`);
+        }else if(msg.content.startsWith('<isactive ')){
+            user.send(`${global.active}`);
+        }else if(msg.content.startsWith('<sleep ') && msg.author.name == 'Infinity291092'){
             global.active=false;
             user.send(`Sleeping for ${msg.content.split(' ')[1]} seconds`);
             setTimeout(() => {
                 user.send(`Active again`);
                 global.active=true;
             });
-        }
-    }else if(msg.channel.type === "dm" && msg.channel.recipient == 'Infinity291092'){
-        if(msg.content.startsWith('<active ')){
-            global.active=true;
-            user.send(`Active again`);
-        }else if(msg.content.startsWith('<isactive ')){
-            user.send(`${global.active}`);
         }
     }
 }
