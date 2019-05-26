@@ -1,12 +1,17 @@
 {
-  "name": "bot_stuff",
+  "name": "sleepyBot",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "dotenv": "^8.0.0",
+    "snoowrap": "^1.15.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
 }
