@@ -19,9 +19,7 @@ server.listen(port, (err) => {
   }
 
   console.log(`server is listening on ${port}`)
-})
-
-global.active = 1;
+});
 
 fs.readdir('./events/', (err, files)=> {
   files.forEach(file =>{
@@ -29,6 +27,6 @@ fs.readdir('./events/', (err, files)=> {
     const eventName = file.split('.')[0]
     client.on(eventName, (...args) => eventHandler(client, ...args))
   })
-})
+});
 
-client.login(process.env.BOT_TOKEN)
+client.login(process.env.BOT_TOKEN);

@@ -33,7 +33,7 @@ function invest_(link, lim){
             console.log(`Reply sent. Comment id ${com.id}`);
             cIds.push(com.id);
             return new Promise((resolve) => {
-                console.log(`Waiting, Try no. ${lim}.`);
+                console.log(`Waiting for ${pollFreq}, Try no. ${lim}.`);
                 setTimeout(() => {
                     resolve(commentHelpers.getReply(link, cIds, r));
                 }, pollFreq);
@@ -56,11 +56,13 @@ function invest_(link, lim){
                     });
                 }
             }else{
-                user.send(`Sleeping for 4hrs`);
+                global.user.send(`Sleeping for 4hrs`);
                 global.active=false;
                 setTimeout(()=>{
-                    user.send(`Active again`);
-                    global.active = true;
+                    if(!global.active){
+                        global.user.send(`Active again`);
+                        global.active=true;
+                    }
                 }, 14400000);
                 global.cid = msgs[repI].id;
                 res(`Bot Reply, Try no. ${lim}.: ${msgs[repI].reply}`);
