@@ -21,6 +21,8 @@ server.listen(port, (err) => {
   console.log(`server is listening on ${port}`)
 })
 
+global.active = 1;
+
 fs.readdir('./events/', (err, files)=> {
   files.forEach(file =>{
     const eventHandler = require(`./events/${file}`)

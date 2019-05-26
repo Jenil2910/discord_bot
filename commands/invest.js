@@ -20,9 +20,10 @@ function invest_(link, lim){
         clientSecret: `${process.env.INFINITY_CLIENTSECRET}`,
         refreshToken: `${process.env.INFINITY_REFRESHTOKEN}`
     });
-    pollFreq = 30000;
+    pollFreq = 60000;
 	return new Promise((res, rej) => {
         //`bt52yc`
+        console.log(`submission link ${link}`);
         r.getSubmission(link).expandReplies({limit: 1, depth: 1})
         .then( replies => {
             console.log(`Sending, Try no. ${lim}.`);
