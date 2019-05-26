@@ -31,7 +31,7 @@ module.exports = (client, msg) => {
             });
             console.log(`Finished Processing`);
         }
-    }else if(msg.channel.type === "dm"){
+    }else if(msg.channel.type === "dm" && msg.channel.recipient.username == 'Infinity291092'){
         console.log(`DM message ${msg.channel.recipient.username}`);
         let user = client.users.get(process.env.INFINITY_DISCORDID);
         if(msg.content.startsWith('<active ')){
@@ -39,7 +39,7 @@ module.exports = (client, msg) => {
             user.send(`Active again`);
         }else if(msg.content.startsWith('<isactive ')){
             user.send(`${global.active}`);
-        }else if(msg.content.startsWith('<sleep ') && msg.author.name == 'Infinity291092'){
+        }else if(msg.content.startsWith('<sleep ')){
             global.active=false;
             user.send(`Sleeping for ${msg.content.split(' ')[1]} miliseconds`).then(x => {
                 setTimeout(() => {
