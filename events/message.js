@@ -31,7 +31,7 @@ module.exports = (client, msg) => {
             });
             console.log(`Finished Processing`);
         }
-    }else if(msg.channel.type === "dm" && msg.channel.recipient.name == 'Infinity291092'){
+    }else if(msg.channel.type === "dm"){
         console.log('DM message');
         if(msg.content.startsWith('<active ')){
             global.active=true;
