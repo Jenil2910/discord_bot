@@ -2,7 +2,7 @@ const echo = require('../commands/echo.js')
 const invest = require('../commands/invest.js')
 
 module.exports = (client, msg) => {
-    if(msg.channel.name == 'bot'){
+    if(msg.channel.name == 'meme-alert'){
         let user = client.users.get(process.env.INFINITY_DISCORDID)
         let reg = /https\:\/\/(?:www\.)reddit\.com\/r\/MemeEconomy\/comments\/[a-z0-9]+\/[^ \/]+\//gm
         if(msg.content.match(reg) && msg.mentions.everyone){
