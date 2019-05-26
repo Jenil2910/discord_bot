@@ -27,12 +27,14 @@ function gen_promise(pid, cid, r){
             if(typeof repl === 'undefined'){
                 res({
                     isreply: false,
-                    reply: ''
+                    reply: undefined,
+                    id: undefined
                 });
             }else{
                 res({
                     isreply: true,
-                    reply: `${repl.body}`
+                    reply: `${repl.body}`,
+                    id: `${repl.id}`
                 });
             }
         }).catch( err => {

@@ -24,6 +24,7 @@ function invest_(link, lim){
 	return new Promise((res, rej) => {
         //`bt52yc`
         console.log(`submission link ${link}`);
+        global.pid = link;
         r.getSubmission(link).expandReplies({limit: 1, depth: 1})
         .then( replies => {
             console.log(`Sending, Try no. ${lim}.`);
@@ -55,6 +56,13 @@ function invest_(link, lim){
                     });
                 }
             }else{
+                user.send(`Sleeping for 4hrs`);
+                global.active=false;
+                setTimeout(()=>{
+                    user.send(`Active again`);
+                    global.active = true;
+                }, 14400000);
+                global.cid = msgs[repI].id;
                 res(`Bot Reply, Try no. ${lim}.: ${msgs[repI].reply}`);
             }
         }).catch( err => {
