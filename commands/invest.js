@@ -20,7 +20,7 @@ function invest_(link, lim){
         clientSecret: `${process.env.INFINITY_CLIENTSECRET}`,
         refreshToken: `${process.env.INFINITY_REFRESHTOKEN}`
     });
-    pollFreq = 60000;
+    pollFreq = 60000;//poll freq
     //console.log(r.getSubmission(link)).expandReplies();
 	return new Promise((res, rej) => {
         //`bt52yc`
