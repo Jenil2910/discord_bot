@@ -5,8 +5,10 @@ module.exports = (client, msg) => {
     if((msg.channel.name == 'off-topic' || msg.channel.name == 'bot' || msg.channel.name == 'meme-alert' ) && global.active){
     //if(msg.channel.name == 'meme-alert'){
         console.log(`Channel Message everyone[${msg.mentions.everyone}] match[${msg.content.match(/https\:\/\/(www\.){0,1}reddit\.com\/r\/MemeEconomy\/comments\/[a-z0-9]+\/[^ \/]+\//gm)}]`);
+        console.log(`${msg.content.match(/https\:\/\/(www\.){0,1}reddit\.com\/r\/MemeEconomy\/comments\/[a-z0-9]+\/[^ \/]+\//gm) && msg.mentions.everyone}`);
         if(msg.content.match(/https\:\/\/(www\.){0,1}reddit\.com\/r\/MemeEconomy\/comments\/[a-z0-9]+\/[^ \/]+\//gm) && msg.mentions.everyone){
-            let matches = Array.from(msg.content.match(reg))
+            let matches = Array.from(msg.content.match(reg));
+            console.log(`started investing`);
             invest(matches[0].split('/')[6], 1).then( sub => {
                 global.user.send(`\`\`\`${sub}\`\`\``);
             }).catch( e => {
@@ -15,12 +17,12 @@ module.exports = (client, msg) => {
         }
     }else if(msg.channel.type === "dm" && msg.channel.recipient.username == 'Infinity291092'){
         console.log(`DM message ${msg.channel.recipient.username}`);
-        if(msg.content.startsWith('<active ')){
+        if(msg.content == '<active'){
             global.active=true;
             global.user.send(`Active again`);
-        }else if(msg.content.startsWith('<isactive ')){
+        }else if(msg.content == '<isactive'){
             global.user.send(`${global.active}`);
-        }else if(msg.content.startsWith('<status ')){
+        }else if(msg.content == '<status'){
             global.user.send(`pid[${global.pid}] cid[${global.cid}] active[${global.active}] link[http://www.reddit.com//comments/${global.pid}//${global.cid}/]`);
         }else if(msg.content.startsWith('<sleep ')){
             global.active=false;
@@ -33,6 +35,7 @@ module.exports = (client, msg) => {
                 }, parseInt(msg.content.split(' ')[1]));
             });
         }else if(msg.content.startsWith('<invest ')){
+            console.log(`started investing`);
             console.log(`${msg.content.split(' ')} ${msg.content.split(' ')[1]}`);
             invest(msg.content.split(' ')[1].split('/')[6], 1).then( sub => {
                 global.user.send(`\`\`\`${sub}\`\`\``);

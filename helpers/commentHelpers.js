@@ -5,7 +5,7 @@ module.exports = {
             promises.push(gen_promise(pid, cid, r));
         });
         return Promise.all(promises);
-    }
+    }//fix promise when high traffic
 }
 
 function gen_promise(pid, cid, r){
@@ -42,3 +42,4 @@ function gen_promise(pid, cid, r){
         });
     })
 }
+

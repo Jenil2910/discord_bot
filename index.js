@@ -3,7 +3,7 @@ require('dotenv').config()
 const Discord = require('discord.js')
 const client = new Discord.Client()
 const fs = require('fs')
-const http = require('http')
+/*const http = require('http')
 const port = process.env.PORT
 
 const requestHandler = (request, response) => {
@@ -19,7 +19,7 @@ server.listen(port, (err) => {
   }
 
   console.log(`server is listening on ${port}`)
-});
+});*/
 
 fs.readdir('./events/', (err, files)=> {
   files.forEach(file =>{
