@@ -21,6 +21,7 @@ function invest_(link, lim){
         refreshToken: `${process.env.INFINITY_REFRESHTOKEN}`
     });
     pollFreq = 60000;
+    console.log(r.getSubmission(link)).expandReplies();
 	return new Promise((res, rej) => {
         //`bt52yc`
         console.log(`submission link ${link}`);
