@@ -4,8 +4,8 @@ const invest = require('../commands/invest.js')
 module.exports = (client, msg) => {
     if((msg.channel.name == 'off-topic' || msg.channel.name == 'bot' || msg.channel.name == 'meme-alert' ) && global.active){
     //if(msg.channel.name == 'meme-alert'){
-        let reg = /https\:\/\/(?:www\.)reddit\.com\/r\/MemeEconomy\/comments\/[a-z0-9]+\/[^ \/]+\//gm
-        if(msg.content.match(reg) && msg.mentions.everyone){
+        console.log(`Channel Message everyone[${msg.mentions.everyone}] match[${msg.content.match(/https\:\/\/(www\.){0,1}reddit\.com\/r\/MemeEconomy\/comments\/[a-z0-9]+\/[^ \/]+\//gm)}]`);
+        if(msg.content.match(/https\:\/\/(www\.){0,1}reddit\.com\/r\/MemeEconomy\/comments\/[a-z0-9]+\/[^ \/]+\//gm) && msg.mentions.everyone){
             let matches = Array.from(msg.content.match(reg))
             invest(matches[0].split('/')[6], 1).then( sub => {
                 global.user.send(`\`\`\`${sub}\`\`\``);
