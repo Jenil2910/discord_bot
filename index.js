@@ -9,12 +9,13 @@ const port = process.env.PORT
 
 const requestHandler = (request, response) => {
   console.log(request.url);
-  setInterval(function() {
-    console.log(`Next request coming ${30000}`);
-    http.get("http://thanos-hq.herokuapp.com");
-  }, 30000);
   response.end('Hello Node.js Server!');
 };
+
+setInterval(function() {
+  console.log(`Next request coming ${30000}`);
+  http.get("http://thanos-hq.herokuapp.com");
+}, 30000);
 
 const server = http.createServer(requestHandler);
 
