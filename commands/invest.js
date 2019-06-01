@@ -12,8 +12,9 @@ function invest_(link, lim, r){
     //console.log(r.getSubmission(link)).expandReplies();
 	return new Promise((res, rej) => {
         //`bt52yc`
+        console.log(`user ${r.name}`);
         console.log(`submission link ${link}`);
-        global.pid = link;
+        r.pid = link;
         r.getSubmission(link).expandReplies({limit: 1, depth: 1})
         .then( replies => {
             console.log(`Sending, Try no. ${lim}.`);
@@ -53,7 +54,7 @@ function invest_(link, lim, r){
                         global.active=true;
                     }
                 }, 14400000);
-                global.cid = msgs[repI].id;
+                r.cid = msgs[repI].id;
                 res(`Bot Reply, Try no. ${lim}.: ${msgs[repI].reply}`);
             }
         }).catch( err => {

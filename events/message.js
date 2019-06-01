@@ -15,21 +15,27 @@ module.exports = (client, msg) => {
             }).catch( e => {
                 global.user.send(`\`\`\`Error while investing : ${e}\`\`\``);
             });
-            invest(matches[0].split('/')[6], 1, global.R).then( sub => {
-                global.user.send(`\`\`\`${global.R.name} ${sub}\`\`\``);
-            }).catch( e => {
-                global.user.send(`\`\`\`Error while investing : ${e}\`\`\``);
-            });
+            if(global.auto){
+                invest(matches[0].split('/')[6], 1, global.R).then( sub => {
+                    global.user.send(`\`\`\`${global.R.name} ${sub}\`\`\``);
+                }).catch( e => {
+                    global.user.send(`\`\`\`Error while investing : ${e}\`\`\``);
+                });
+            }
         }
     }else if(msg.channel.type === "dm" && msg.channel.recipient.username == 'Infinity291092'){
         console.log(`DM message ${msg.channel.recipient.username}`);
         if(msg.content == '<active'){
             global.active=true;
             global.user.send(`Active again`);
+        }else if(msg.content == '<tauto'){
+            global.auto=!global.auto;
         }else if(msg.content == '<isactive'){
             global.user.send(`${global.active}`);
         }else if(msg.content == '<status'){
-            global.user.send(`pid[${global.pid}] cid[${global.cid}] active[${global.active}] link[http://www.reddit.com//comments/${global.pid}//${global.cid}/]`);
+            [global.r, global.R].forEach( e => {
+                global.user.send(`name[${e.name}] pid[${global.pid}] cid[${global.cid}] active[${global.active}] auto[${global.auto}] link[http://www.reddit.com//comments/${e.pid}//${e.cid}/]`);
+            });
         }else if(msg.content.startsWith('<sleep ')){
             global.active=false;
             global.user.send(`Sleeping for ${msg.content.split(' ')[1]} miliseconds`).then(x => {
