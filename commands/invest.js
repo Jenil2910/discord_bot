@@ -7,20 +7,8 @@ module.exports = (link, lim) => {
     return invest_(link, lim);
 }
 
-function invest_(link, lim){
-    const R = new snoowrap({
-        userAgent: `${process.env.REDDIT_USERID}`,
-        clientId: `${process.env.REDDIT_CLIENTID}`,
-        clientSecret: `${process.env.REDDIT_CLIENTSECRET}`,
-        refreshToken: `${process.env.REDDIT_REFRESHTOKEN}`
-    });
-    const r = new snoowrap({
-        userAgent: `${process.env.INFINITY_USERID}`,
-        clientId: `${process.env.INFINITY_CLIENTID}`,
-        clientSecret: `${process.env.INFINITY_CLIENTSECRET}`,
-        refreshToken: `${process.env.INFINITY_REFRESHTOKEN}`
-    });
-    pollFreq = 120000;//poll freq
+function invest_(link, lim, r){
+    pollFreq = 60000;//poll freq
     //console.log(r.getSubmission(link)).expandReplies();
 	return new Promise((res, rej) => {
         //`bt52yc`

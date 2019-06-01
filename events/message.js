@@ -10,8 +10,13 @@ module.exports = (client, msg) => {
         if(msg.content.match(reg) && msg.mentions.everyone){
             let matches = Array.from(msg.content.match(reg));
             console.log(`started investing`);
-            invest(matches[0].split('/')[6], 1).then( sub => {
-                global.user.send(`\`\`\`${sub}\`\`\``);
+            invest(matches[0].split('/')[6], 1, global.r).then( sub => {
+                global.user.send(`\`\`\`${global.r.name}  ${sub}\`\`\``);
+            }).catch( e => {
+                global.user.send(`\`\`\`Error while investing : ${e}\`\`\``);
+            });
+            invest(matches[0].split('/')[6], 1, global.R).then( sub => {
+                global.user.send(`\`\`\`${global.R.name} ${sub}\`\`\``);
             }).catch( e => {
                 global.user.send(`\`\`\`Error while investing : ${e}\`\`\``);
             });
