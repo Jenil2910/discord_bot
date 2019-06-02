@@ -1,3 +1,5 @@
+const snoowrap = require('snoowrap');
+
 module.exports = client => {
     global.active = true;
     global.user = client.users.get(process.env.INFINITY_DISCORDID);
