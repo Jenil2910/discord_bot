@@ -3,14 +3,14 @@ const snoowrap = require('snoowrap');
 module.exports = client => {
     global.active = true;
     global.user = client.users.get(process.env.INFINITY_DISCORDID);
-    global.R = new snoowrap({
+    global.r = new snoowrap({
         name: `but`,
         userAgent: `${process.env.REDDIT_USERID}`,
         clientId: `${process.env.REDDIT_CLIENTID}`,
         clientSecret: `${process.env.REDDIT_CLIENTSECRET}`,
         refreshToken: `${process.env.REDDIT_REFRESHTOKEN}`
     });
-    global.r = new snoowrap({
+    global.R = new snoowrap({
         name: `fin`,
         userAgent: `${process.env.INFINITY_USERID}`,
         clientId: `${process.env.INFINITY_CLIENTID}`,
@@ -18,5 +18,8 @@ module.exports = client => {
         refreshToken: `${process.env.INFINITY_REFRESHTOKEN}`
     });
     global.auto=false;
-    console.log(`Logged in as ${client.user.tag}!`)
+    global.amout=100;
+    console.log(`Logged in as ${client.user.tag}!`);
+    console.log(`${global.r}`);
+    console.log(`${global.R}`);
 }

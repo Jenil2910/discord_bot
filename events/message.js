@@ -46,10 +46,15 @@ module.exports = (client, msg) => {
                     }
                 }, parseInt(msg.content.split(' ')[1]));
             });
+        }else if(msg.content.startsWith('<sleep ')){
+            global.amount=msg.content.split(' ')[1];
+	    setTimeout(() => {
+	         console.log(`amount changed to ${global.amount}`);
+	    }, 1000);
         }else if(msg.content.startsWith('<invest ')){
             console.log(`started investing`);
             console.log(`${msg.content.split(' ')} ${msg.content.split(' ')[1]}`);
-            invest(msg.content.split(' ')[1].split('/')[6], 1).then( sub => {
+            invest(msg.content.split(' ')[1].split('/')[6], 1, global.R).then( sub => {
                 global.user.send(`\`\`\`${sub}\`\`\``);
             }).catch( e => {
                 global.user.send(`\`\`\`Error while investing : ${e}\`\`\``);

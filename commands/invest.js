@@ -3,8 +3,8 @@ const commentHelpers = require('../helpers/commentHelpers.js')
 
 var cIds = [];
 
-module.exports = (link, lim) => {
-    return invest_(link, lim);
+module.exports = (link, lim, r) => {
+    return invest_(link, lim, r);
 }
 
 function invest_(link, lim, r){
@@ -18,7 +18,7 @@ function invest_(link, lim, r){
         r.getSubmission(link).expandReplies({limit: 1, depth: 1})
         .then( replies => {
             console.log(`Sending, Try no. ${lim}.`);
-            return replies.comments[0].reply('!invest 100%');
+            return replies.comments[0].reply('!invest ${global.amount}%');
         }).then( (com) => {
             console.log(`Reply sent. Comment id ${com.id}`);
             cIds.push(com.id);
